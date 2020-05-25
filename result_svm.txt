@@ -1,0 +1,20 @@
+
+[SVM Classifier]
+ * freq-1gram - linear:	Accuracy avg: 48.918
+ * freq-1gram - rbf:	Accuracy avg: 27.850
+ * freq-1gram - poly:	Accuracy avg: 27.850
+ * freq-2gram - linear:	Accuracy avg: 52.958
+ * freq-2gram - rbf:	Accuracy avg: 27.850
+ * freq-2gram - poly:	Accuracy avg: 27.850
+ * freq-3gram - linear:	Accuracy avg: 52.092
+ * freq-3gram - rbf:	Accuracy avg: 27.850
+ * freq-3gram - poly:	Accuracy avg: 27.850
+ * tfidf-1gram - linear:	Accuracy avg: 53.247
+ * tfidf-1gram - rbf:	Accuracy avg: 27.850
+ * tfidf-1gram - poly:	Accuracy avg: 27.850
+ * tfidf-2gram - linear:	Accuracy avg: 53.247
+ * tfidf-2gram - rbf:	Accuracy avg: 27.850
+ * tfidf-2gram - poly:	Accuracy avg: 27.850
+ * tfidf-3gram - linear:	Accuracy avg: 54.545
+ * tfidf-3gram - rbf:	Accuracy avg: 27.850
+ * tfidf-3gram - poly:	Accuracy avg: 27.850
