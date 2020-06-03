@@ -1,0 +1,9 @@
+[SVM + TF-IDF]
+- Validation accuracy: 0.4956268221574344
+- Test accuracy: 0.4963924963924964
+[RANDOM FOREST + TF-IDF]
+- Validation accuracy: 0.4096209912536443
+- Test accuracy: 0.40115440115440115
+[LSTM + TF-IDF]
+- Validation accuracy: 0.3119533527696793
+- Test accuracy: 0.2784992784992785
