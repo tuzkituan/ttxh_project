@@ -120,8 +120,16 @@ def train_model(classifier, X_data, y_data, X_test, y_test, X_val, y_val, is_neu
            
     # print("Validation accuracy: ", metrics.accuracy_score(val_predictions, y_val))
     # print("Test accuracy: ", metrics.accuracy_score(test_predictions, y_test))
-    f.write('\n- Validation accuracy: ' + str(metrics.accuracy_score(val_predictions, y_val)))
+
     f.write('\n- Test accuracy: ' + str(metrics.accuracy_score(test_predictions, y_test)))
+    f.write('\n- Test f1-score: ' + str(metrics.f1_score(test_predictions, y_test, average='macro')))
+    f.write('\n- Test recall: ' + str(metrics.recall_score(test_predictions, y_test, average='macro')))
+    f.write('\n- Test precision: ' + str(metrics.precision_score(test_predictions, y_test, average='macro')))
+
+    f.write('\n\n- Validation accuracy: ' + str(metrics.accuracy_score(val_predictions, y_val)))
+    f.write('\n- Validation f1-score: ' + str(metrics.f1_score(val_predictions, y_val, average='macro')))
+    f.write('\n- Validation recall: ' + str(metrics.recall_score(val_predictions, y_val, average='macro')))
+    f.write('\n- Validation precision: ' + str(metrics.precision_score(val_predictions, y_val, average='macro')))
 
 # LSTM
 def create_lstm_model():
@@ -141,10 +149,10 @@ def create_lstm_model():
 f.write("[SVM + TF-IDF]")
 train_model(svm.SVC(), X_data_tfidf_svd, y_data_n, X_test_tfidf_svd, y_test_n, X_val_tfidf_svd, y_val_n, is_neuralnet=False)
 
-f.write("\n[RANDOM FOREST + TF-IDF]")
+f.write("\n\n[RANDOM FOREST + TF-IDF]")
 train_model(ensemble.RandomForestClassifier(), X_data_tfidf_svd, y_data_n, X_test_tfidf_svd, y_test_n, X_val_tfidf_svd, y_val_n, is_neuralnet=False)
 
-f.write("\n[LSTM + TF-IDF]")
+f.write("\n\n[LSTM + TF-IDF]")
 classifier = create_lstm_model()
 train_model(classifier=classifier, X_data=X_data_tfidf_svd, y_data=y_data_n, X_test=X_test_tfidf_svd, y_test=y_test_n, X_val = X_val_tfidf_svd, y_val = y_val_n, is_neuralnet=True)
 
