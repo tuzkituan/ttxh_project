@@ -113,7 +113,7 @@ def train_model(classifier, X_data, y_data, X_test, y_test, X_val, y_val, is_neu
         val_predictions = val_predictions.argmax(axis=-1)
         test_predictions = test_predictions.argmax(axis=-1)
     else:
-        classifier.fit(np.array(X_data), np.array(y_data))
+        classifier.fit(X_data, y_data)
     
         # train_predictions = classifier.predict(X_data)
         val_predictions = classifier.predict(X_val)
@@ -146,8 +146,13 @@ def create_lstm_model():
     classifier.compile(optimizer=optimizers.Adam(), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
     return classifier
 
+
+f.write("\n[NAIVE BAYES]")
+naiveBayesModel = naive_bayes.MultinomialNB()
+train_model(naiveBayesModel, X_data_tfidf, y_data, X_test_tfidf, y_test, X_val_tfidf, y_val, is_neuralnet=False)
+
 svmModel = svm.SVC()
-f.write("[SVM + TF-IDF]")
+f.write("\n\n[SVM + TF-IDF]")
 train_model(svmModel, X_data_tfidf_svd, y_data, X_test_tfidf_svd, y_test, X_val_tfidf_svd, y_val, is_neuralnet=False)
 
 randomForestModel = ensemble.RandomForestClassifier()
@@ -157,10 +162,6 @@ train_model(randomForestModel, X_data_tfidf_svd, y_data, X_test_tfidf_svd, y_tes
 f.write("\n\n[LSTM + TF-IDF]")
 classifier = create_lstm_model()
 train_model(classifier=classifier, X_data=X_data_tfidf_svd, y_data=y_data_n, X_test=X_test_tfidf_svd, y_test=y_test_n, X_val = X_val_tfidf_svd, y_val = y_val_n, is_neuralnet=True)
-
-# f.write("\n[LSTM + W2V]")
-# classifier = create_lstm_model()
-# train_model(classifier=classifier, X_data=X_data_w2v, y_data=y_data_n, X_test=X_test_w2v, y_test=y_test_n, X_val = X_val_w2v, y_val = y_val_n, is_neuralnet=True)
 
 f.close()
 
@@ -174,7 +175,7 @@ def preprocessing_doc(doc):
 with io.open('test.txt', 'r', encoding="utf-8") as f:
         lines = f.readlines()
         for line in lines:
-            print('================================================')
+            print('================================================\n')
             print('Sentence: ' + line)
             test_doc = line
             test_doc = preprocessing_doc(test_doc)
@@ -183,6 +184,10 @@ with io.open('test.txt', 'r', encoding="utf-8") as f:
             # print(np.shape(test_doc_tfidf))
 
             test_doc_svd = svd.transform(test_doc_tfidf)
+            print("\nNAIVE BAYES: ")
+            prediction = naiveBayesModel.predict(test_doc_tfidf)
+            print(prediction)
+
             print("\nSVM: ")
             prediction = svmModel.predict(test_doc_svd)
             print(prediction)
@@ -194,5 +199,3 @@ with io.open('test.txt', 'r', encoding="utf-8") as f:
             # print("\nLSTM: ")
             # prediction = classifier.predict(test_doc_svd)
             # print(prediction)
-
-            print('\n')

@@ -1,3 +1,11 @@
+
+[NAIVE BAYES]
+- Test accuracy: 0.4357864357864358
+- Test f1-score: 0.5045728423281308
+
+- Validation accuracy: 0.4518950437317784
+- Validation f1-score: 0.5299510620574761
+
 [SVM + TF-IDF]
 - Test accuracy: 0.4963924963924964
 - Test f1-score: 0.509682537810267
@@ -6,11 +14,11 @@
 - Validation f1-score: 0.518481179956047
 
 [RANDOM FOREST + TF-IDF]
-- Test accuracy: 0.39826839826839827
-- Test f1-score: 0.446162081684165
+- Test accuracy: 0.3823953823953824
+- Test f1-score: 0.42267899801231046
 
-- Validation accuracy: 0.40524781341107874
-- Validation f1-score: 0.45637371293942186
+- Validation accuracy: 0.4139941690962099
+- Validation f1-score: 0.4619441190742048
 
 [LSTM + TF-IDF]
 - Test accuracy: 0.2784992784992785
