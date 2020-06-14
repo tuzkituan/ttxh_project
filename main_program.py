@@ -122,14 +122,14 @@ def train_model(classifier, X_data, y_data, X_test, y_test, X_val, y_val, is_neu
     # print("Test accuracy: ", metrics.accuracy_score(test_predictions, y_test))
 
     f.write('\n- Test accuracy: ' + str(metrics.accuracy_score(test_predictions, y_test)))
-    f.write('\n- Test f1-score: ' + str(metrics.f1_score(test_predictions, y_test, average='macro')))
-    f.write('\n- Test recall: ' + str(metrics.recall_score(test_predictions, y_test, average='macro')))
-    f.write('\n- Test precision: ' + str(metrics.precision_score(test_predictions, y_test, average='macro')))
+    f.write('\n- Test f1-score: ' + str(metrics.f1_score(test_predictions, y_test, average='weighted')))
+    # f.write('\n- Test recall: ' + str(metrics.recall_score(test_predictions, y_test, average='weighted')))
+    # f.write('\n- Test precision: ' + str(metrics.precision_score(test_predictions, y_test, average='weighted')))
 
     f.write('\n\n- Validation accuracy: ' + str(metrics.accuracy_score(val_predictions, y_val)))
-    f.write('\n- Validation f1-score: ' + str(metrics.f1_score(val_predictions, y_val, average='macro')))
-    f.write('\n- Validation recall: ' + str(metrics.recall_score(val_predictions, y_val, average='macro')))
-    f.write('\n- Validation precision: ' + str(metrics.precision_score(val_predictions, y_val, average='macro')))
+    f.write('\n- Validation f1-score: ' + str(metrics.f1_score(val_predictions, y_val, average='weighted')))
+    # f.write('\n- Validation recall: ' + str(metrics.recall_score(val_predictions, y_val, average='weighted')))
+    # f.write('\n- Validation precision: ' + str(metrics.precision_score(val_predictions, y_val, average='weighted')))
 
 # LSTM
 def create_lstm_model():

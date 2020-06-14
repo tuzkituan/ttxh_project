@@ -1,0 +1,10 @@
+[SVM + TF-IDF]
+- Test accuracy: 0.4963924963924964
+- Test f1-score: 0.509682537810267
+- Test recall: 0.4963924963924964
+- Test precision: 0.5541854655820536
+
+- Validation accuracy: 0.4956268221574344
+- Validation f1-score: 0.518481179956047
+- Validation recall: 0.4956268221574344
+- Validation precision: 0.566022961167148
