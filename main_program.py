@@ -57,6 +57,7 @@ encoder = preprocessing.LabelEncoder()
 y_data_n = encoder.fit_transform(y_data)
 y_test_n = encoder.fit_transform(y_test)
 y_val_n = encoder.fit_transform(y_val)
+
 # print(encoder.classes_)
 
 # WORD2VECTOR
@@ -145,12 +146,13 @@ def create_lstm_model():
     classifier.compile(optimizer=optimizers.Adam(), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
     return classifier
 
-
+svmModel = svm.SVC()
 f.write("[SVM + TF-IDF]")
-train_model(svm.SVC(), X_data_tfidf_svd, y_data_n, X_test_tfidf_svd, y_test_n, X_val_tfidf_svd, y_val_n, is_neuralnet=False)
+train_model(svmModel, X_data_tfidf_svd, y_data, X_test_tfidf_svd, y_test, X_val_tfidf_svd, y_val, is_neuralnet=False)
 
+randomForestModel = ensemble.RandomForestClassifier()
 f.write("\n\n[RANDOM FOREST + TF-IDF]")
-train_model(ensemble.RandomForestClassifier(), X_data_tfidf_svd, y_data_n, X_test_tfidf_svd, y_test_n, X_val_tfidf_svd, y_val_n, is_neuralnet=False)
+train_model(randomForestModel, X_data_tfidf_svd, y_data, X_test_tfidf_svd, y_test, X_val_tfidf_svd, y_val, is_neuralnet=False)
 
 f.write("\n\n[LSTM + TF-IDF]")
 classifier = create_lstm_model()
@@ -161,3 +163,36 @@ train_model(classifier=classifier, X_data=X_data_tfidf_svd, y_data=y_data_n, X_t
 # train_model(classifier=classifier, X_data=X_data_w2v, y_data=y_data_n, X_test=X_test_w2v, y_test=y_test_n, X_val = X_val_w2v, y_val = y_val_n, is_neuralnet=True)
 
 f.close()
+
+
+def preprocessing_doc(doc):
+    lines = gensim.utils.simple_preprocess(doc)
+    lines = ' '.join(lines)
+    lines = ViTokenizer.tokenize(lines)
+    return lines
+
+with io.open('test.txt', 'r', encoding="utf-8") as f:
+        lines = f.readlines()
+        for line in lines:
+            print('================================================')
+            print('Sentence: ' + line)
+            test_doc = line
+            test_doc = preprocessing_doc(test_doc)
+
+            test_doc_tfidf = tfidf_vect.transform([test_doc])
+            # print(np.shape(test_doc_tfidf))
+
+            test_doc_svd = svd.transform(test_doc_tfidf)
+            print("\nSVM: ")
+            prediction = svmModel.predict(test_doc_svd)
+            print(prediction)
+
+            print("\nRANDOM FOREST: ")
+            prediction = randomForestModel.predict(test_doc_svd)
+            print(prediction)
+
+            # print("\nLSTM: ")
+            # prediction = classifier.predict(test_doc_svd)
+            # print(prediction)
+
+            print('\n')
