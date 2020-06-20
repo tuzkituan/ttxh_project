@@ -60,29 +60,6 @@ y_val_n = encoder.fit_transform(y_val)
 
 # print(encoder.classes_)
 
-# WORD2VECTOR
-# word2vec_model_path = os.path.join("vi/vi.vec")
-
-# w2v = KeyedVectors.load_word2vec_format(word2vec_model_path)
-# vocab = w2v.wv.vocab
-# wv = w2v.wv
-
-# def get_word2vec_data(X):
-#     word2vec_data = []
-#     for x in X:
-#         sentence = []
-#         for word in x.split(" "):
-#             if word in vocab:
-#                 sentence.append(wv[word])
-
-#         word2vec_data.append(sentence)
-#         # print(sentence)
-#     return word2vec_data
-
-# X_data_w2v = get_word2vec_data(X_data)
-# X_test_w2v = get_word2vec_data(X_test)
-# X_val_w2v = get_word2vec_data(X_val)
-
 # TFIDF 
 # word level - we choose max number of words equal to 30000 except all words (100k+ words)
 tfidf_vect = TfidfVectorizer(analyzer='word', max_features=30000)
