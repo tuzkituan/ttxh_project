@@ -14,11 +14,11 @@
 - Validation f1-score: 0.518481179956047
 
 [RANDOM FOREST + TF-IDF]
-- Test accuracy: 0.3823953823953824
-- Test f1-score: 0.42267899801231046
+- Test accuracy: 0.38816738816738816
+- Test f1-score: 0.43295488196073023
 
-- Validation accuracy: 0.4139941690962099
-- Validation f1-score: 0.4619441190742048
+- Validation accuracy: 0.4096209912536443
+- Validation f1-score: 0.45542009684827167
 
 [LSTM + TF-IDF]
 - Test accuracy: 0.2784992784992785

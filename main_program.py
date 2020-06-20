@@ -172,30 +172,56 @@ def preprocessing_doc(doc):
     lines = ViTokenizer.tokenize(lines)
     return lines
 
-with io.open('test.txt', 'r', encoding="utf-8") as f:
-        lines = f.readlines()
-        for line in lines:
-            print('================================================\n')
-            print('Sentence: ' + line)
-            test_doc = line
-            test_doc = preprocessing_doc(test_doc)
+# with io.open('test.txt', 'r', encoding="utf-8") as f:
+#         lines = f.readlines()
+#         for line in lines:
+#             print('================================================\n')
+#             print('Sentence: ' + line)
+#             test_doc = line
+#             test_doc = preprocessing_doc(test_doc)
 
-            test_doc_tfidf = tfidf_vect.transform([test_doc])
-            # print(np.shape(test_doc_tfidf))
+#             test_doc_tfidf = tfidf_vect.transform([test_doc])
+#             # print(np.shape(test_doc_tfidf))
 
-            test_doc_svd = svd.transform(test_doc_tfidf)
-            print("\nNAIVE BAYES: ")
-            prediction = naiveBayesModel.predict(test_doc_tfidf)
-            print(prediction)
+#             test_doc_svd = svd.transform(test_doc_tfidf)
+#             print("\nNAIVE BAYES: ")
+#             prediction = naiveBayesModel.predict(test_doc_tfidf)
+#             print(prediction)
 
-            print("\nSVM: ")
-            prediction = svmModel.predict(test_doc_svd)
-            print(prediction)
+#             print("\nSVM: ")
+#             prediction = svmModel.predict(test_doc_svd)
+#             print(prediction)
 
-            print("\nRANDOM FOREST: ")
-            prediction = randomForestModel.predict(test_doc_svd)
-            print(prediction)
+#             print("\nRANDOM FOREST: ")
+#             prediction = randomForestModel.predict(test_doc_svd)
+#             print(prediction)
 
             # print("\nLSTM: ")
             # prediction = classifier.predict(test_doc_svd)
             # print(prediction)
+
+
+print('================================================\n')
+
+while (1):  
+    print('\nSentence: ')
+    test_doc = input()
+    test_doc = preprocessing_doc(test_doc)
+
+    test_doc_tfidf = tfidf_vect.transform([test_doc])
+    # print(np.shape(test_doc_tfidf))
+
+    test_doc_svd = svd.transform(test_doc_tfidf)
+    print("NAIVE BAYES: ")
+    prediction = naiveBayesModel.predict(test_doc_tfidf)
+    print(prediction)
+
+    print("SVM: ")
+    prediction = svmModel.predict(test_doc_svd)
+    print(prediction)
+
+    print("RANDOM FOREST: ")
+    prediction = randomForestModel.predict(test_doc_svd)
+    print(prediction)  
+
+
